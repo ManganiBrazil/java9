@@ -3,6 +3,7 @@ package com.mangani.model;
 import com.mangani.types.Category;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Book {
 
@@ -23,6 +24,54 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", categories=" + categories +
                 '}';
+    }
+
+    public static final List<Book> all() {
+        return List.of(
+                new Book(
+                        "Desbravando Java",
+                        "Rodrigo Turini",
+                        Category.PROGRAMMING
+                ),
+                new Book(
+                        "APIs Java",
+                        "Rodrigo Turini",
+                        Category.PROGRAMMING
+                ),
+
+
+
+                new Book(
+                        "Certificação Java",
+                        "Guilherme Silveira",
+                        Category.PROGRAMMING, Category.CERTIFICATION
+                ),
+                new Book(
+                        "TDD",
+                        "Mauricio Aniche",
+                        Category.PROGRAMMING, Category.AGILE
+                ),
+
+                new Book(
+                        "SOLID",
+                        "Mauricio Aniche",
+                        Category.PROGRAMMING
+                ),
+                new Book(
+                        "Guia da Startup",
+                        "Joaquim Torres",
+                        Category.BUSINESS
+                )
+        );
+    }
+
+
+    public static Optional<Book> findSimilar(Book book) {
+
+        return Book.all().stream()
+                .filter(b -> b.getCategories().equals(book.getCategories()))
+                .filter(b -> !b.getAuthor().equals(book.getAuthor()))
+                .findAny();
     }
 
     public String getName() {
