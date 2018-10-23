@@ -26,6 +26,11 @@ public class Book {
                 '}';
     }
 
+    public static final Book toBook (String line) {
+        String[] values = line.split(",");
+        return new Book(values[0], values[1], Category.valueOf(values[3]));
+    }
+
     public static final List<Book> all() {
         return List.of(
                 new Book(
@@ -38,8 +43,6 @@ public class Book {
                         "Rodrigo Turini",
                         Category.PROGRAMMING
                 ),
-
-
 
                 new Book(
                         "Certificação Java",
